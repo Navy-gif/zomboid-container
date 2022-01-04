@@ -18,11 +18,12 @@ navydotgif/zomboid:latest-alt
 
 **Alternatively** you can build the image yourself and have the build process download the game files, but you'll have to modify the alternate dockerfile by uncommending line 12 with `RUN steamcmd ...`
 
+# Read before starting the container  
+
 **About JVM Args:**   
 If you need to add more or change them, edit [ProjectZomboid64.json](./ProjectZomboid64.json) file. These are only arguments that are passed to the VM!  
 If you need help with these, see the [PZ wiki page on it](https://pzwiki.net/wiki/Startup_parameters)  
 
-# Read before starting the container  
 By default the admin password is 12345 as defined in the env variables in the [Dockerfile](./Dockerfile) and the savefile is called servertest. You can change them in the Dockerfile but you'll have to rebuild the image yourself, alternatively you can pass `-e ADMIN_PASS=12345` and `-e SERVER_NAME="servertest"` arguments when starting the container, or modify them in portainer.  
 
 To avoid rebuilding the image to change the JVM args you can bind the file with  
