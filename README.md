@@ -47,6 +47,16 @@ docker run --name zomboid -d  \
 -v ZomboidDb:/gameserver/Zomboid/db \
 navydotgif/zomboid:latest
 ```
+**With 1 volume**
+```
+docker run --name zomboid -d  \
+-p 16261:16261/udp \
+-e SERVER_NAME="servertest" \
+-e ADMIN_PASS=12345 \
+-v /path/to/ProjectZomboid64.json:/gameserver/PZServer/ProjectZomboid64.json \
+-v Zomboid:/gameserver/Zomboid \
+navydotgif/zomboid:latest
+```
 **Least required**
 ```
 docker run --name zomboid -d -p 16261:16261/udp navydotgif/zomboid:latest
