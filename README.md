@@ -29,19 +29,13 @@ By default the admin password is 12345 as defined in the env variables in the [D
 To avoid rebuilding the image to change the JVM args you can bind the file with  
 `-v /path/to/ProjectZomboid64.json:/gameserver/PZServer/ProjectZomboid64.json`.  
 
-By default the container will create three persistent volumes that mount at  
-`/gameserver/Zomboid/Saves`  
-`/gameserver/Zomboid/Server`  
-`/gameserver/Zomboid/db`  
+By default the container will create a persistent volumes that mounts at  
+`/gameserver/Zomboid`
 which will house all the server saves, config and database files respectively.  
-**Would highly recommend creating named volumes for these to avoid headaches when redeploying.**  
+**Would highly recommend creating a named volume for these to avoid headaches when redeploying.**  
 
-**If you would rather have all these in one volume/directory, you can do so by binding a directory or volume to `/gameserver/Zomboid` with `-v ZomboidVolume:/gameserver/Zomboid`**
-
-Alternatively bind them to folders on your host machine with  
-`-v /path/on/host:/gameserver/Zomboid/Saves`  
-`-v /path/on/host:/gameserver/Zomboid/Server`  
-`-v /path/on/host:/gameserver/Zomboid/db`  
+Alternatively bind them to a folder on your host machine with  
+`-v /path/on/host:/gameserver/Zomboid`  
 
 For named volumes replace the `/path/on/host` part with the name of the volume name.  
 Create persistent volumes with  
@@ -59,21 +53,10 @@ docker run --name zomboid -d  \
 -e SERVER_NAME="servertest" \
 -e ADMIN_PASS=12345 \
 -v /path/to/ProjectZomboid64.json:/gameserver/PZServer/ProjectZomboid64.json \
--v ZomboidSave:/gameserver/Zomboid/Saves \
--v ZomboidConfig:/gameserver/Zomboid/Server \
--v ZomboidDb:/gameserver/Zomboid/db \
-navydotgif/zomboid:latest
-```
-**With 1 volume**
-```
-docker run --name zomboid -d  \
--p 16261:16261/udp \
--e SERVER_NAME="servertest" \
--e ADMIN_PASS=12345 \
--v /path/to/ProjectZomboid64.json:/gameserver/PZServer/ProjectZomboid64.json \
 -v Zomboid:/gameserver/Zomboid \
 navydotgif/zomboid:latest
 ```
+
 **Least required**
 ```
 docker run --name zomboid -d -p 16261:16261/udp navydotgif/zomboid:latest

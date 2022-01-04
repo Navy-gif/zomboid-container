@@ -2,7 +2,7 @@ FROM steamcmd/steamcmd:latest
 WORKDIR /gameserver
 
 # Volume for the saves, config and database files
-VOLUME ["/gameserver/Zomboid/Saves", "/gameserver/Zomboid/Server", "/gameserver/Zomboid/db" ]
+VOLUME ["/gameserver/Zomboid" ]
 # Volume for game files to avoid having to download a big image at the cost of building the image and downloading the game files
 VOLUME [ "/gameserver/PZServer" ]
 

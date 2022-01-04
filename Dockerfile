@@ -21,7 +21,7 @@ ENV ADMIN_PASS=12345
 ENV SERVER_NAME="servertest"
 
 # Volume for the saves, config and database files
-VOLUME ["/gameserver/Zomboid/Saves", "/gameserver/Zomboid/Server", "/gameserver/Zomboid/db"]
+VOLUME ["/gameserver/Zomboid"]
 
 # Need to overwrite this from the steamcmd base image
 ENTRYPOINT ["/bin/bash"]
