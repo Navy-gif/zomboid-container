@@ -8,6 +8,15 @@
 ############
 
 INSTDIR="`dirname $0`" ; cd "${INSTDIR}" ; INSTDIR="`pwd`"
+INSTDIR="${INSTDIR}/PZServer"
+
+if [[ "$IMAGE" == "latest-alt" && "$INSTALL" == "true" && ! -f "${INSTDIR}/ProjectZomboid64" ]]; then
+    echo "Installing game"
+    steamcmd +force_install_dir /gameserver/PZServer +login anonymous +app_update 380870 validate +quit
+fi
+
+cp ProjectZomboid64.json PZServer/
+cd PZServer
 
 if "${INSTDIR}/jre64/bin/java" -version > /dev/null 2>&1; then
         echo "64-bit java detected"

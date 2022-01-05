@@ -5,8 +5,9 @@ Yes, there are a bunch of these already but I felt like making my own.
 # Alternate image
 I've also provided an alternate dockerfile for those who want to keep the game's files on a volume to avoid pulling a large image.  
 This method assumes you have installed the game somewhere on the host machine, see the [wiki page on how to install](https://pzwiki.net/wiki/Dedicated_Server)  
+**Update:** Added an environment variable `-e INSTALL="true"` you can set to have the container install the game. **MAKE SURE TO HAVE A NAMED VOLUME FOR THIS!!**  
 ```
-docker run --name zomboid -d  \
+docker run --name zomboid -d -it \
 -p 16261:16261/udp \
 -e SERVER_NAME="servertest" \
 -e ADMIN_PASS=12345 \
@@ -16,7 +17,7 @@ docker run --name zomboid -d  \
 navydotgif/zomboid:latest-alt
 ```
 
-**Alternatively** you can build the image yourself and have the build process download the game files, but you'll have to modify the alternate dockerfile by uncommending line 12 with `RUN steamcmd ...`
+**Alternatively** you can build the image yourself and have the build process download the game files, but you'll have to modify the alternate dockerfile by uncommending line 12 with `RUN steamcmd ...`  
 
 # Read before starting the container  
 
@@ -48,7 +49,7 @@ To bind the exposed ports to your host machine , pass `-p 16261:16261/udp`.
 The command should look something like this now  
 **With all options**
 ```
-docker run --name zomboid -d  \
+docker run --name zomboid -d -it  \
 -p 16261:16261/udp \
 -e SERVER_NAME="servertest" \
 -e ADMIN_PASS=12345 \
@@ -59,5 +60,5 @@ navydotgif/zomboid:latest
 
 **Least required**
 ```
-docker run --name zomboid -d -p 16261:16261/udp navydotgif/zomboid:latest
+docker run --name zomboid -d -it -p 16261:16261/udp navydotgif/zomboid:latest
 ```
